@@ -8,6 +8,8 @@ $(".time-block").each(function(){
     //after the split take the numeric value
     //Get Hour Value of Each Time Block
     var scheduleTime ="hour-" + $(this).attr("id").split("-")[1];
+    //add additional var to compare times
+    var scheduleBlock =$(this).attr("id").split("-")[1];
     console.log(scheduleTime)
     //Get Saved Value from Local Storage and Display in Correct Time Block's Text Area
     var toDoThing= localStorage.getItem(scheduleTime);
@@ -16,12 +18,12 @@ $(".time-block").each(function(){
     toDoText.val(toDoThing);
 //create if else to compare times to current time.
 //textarea class provided by bootstrap is ".description"
-  if (scheduleTime < nowTime){
+  if (scheduleBlock < nowTime){
     //use jq FIND to designate specific class based on time
       $(this).find(".description").addClass("past");
-  }else if(scheduleTime == nowTime){
+  }else if(scheduleBlock == nowTime){
       $(this).find(".description").addClass("present");
-  }else if(scheduleTime >nowTime){
+  }else if(scheduleBlock >nowTime){
       $(this).find(".description").addClass("future");
    }
 });
